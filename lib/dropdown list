@@ -1,0 +1,100 @@
+import 'package:flutter/material.dart';
+
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  List _company = ["Apple", "Google", "Onepluse", "Sumsang", "LG"];
+  List _processor = ["Apple A13 Bionic", "Snapdragon 865", "Exynos 990", "Snapdragon 855+", "MediaTek Dimensity 1000"];
+  List _ram = ["3GB", "4GB", "6GB", "8GB", "12GB" ];
+
+
+  List<DropdownMenuItem<String>> _dropDownMenuItems1;
+  String _selectedcompany;
+
+  List<DropdownMenuItem<String>> _dropDownMenuItems2;
+  String _selectedprocessor;
+
+  List<DropdownMenuItem<String>> _dropDownMenuItems3;
+  String _selectedram;
+
+  @override
+  void initState() {
+    _dropDownMenuItems1 = buildAndGetDropDownMenuItems(_company);
+    _selectedcompany = _dropDownMenuItems1[0].value;
+    _dropDownMenuItems2 = buildAndGetDropDownMenuItems(_processor);
+    _selectedprocessor = _dropDownMenuItems2[0].value;
+    _dropDownMenuItems3 = buildAndGetDropDownMenuItems(_ram);
+    _selectedram = _dropDownMenuItems3[0].value;
+    super.initState();
+  }
+
+  List<DropdownMenuItem<String>> buildAndGetDropDownMenuItems(List fruits) {
+    List<DropdownMenuItem<String>> items = List();
+    for (String fruit in fruits) {
+      items.add(DropdownMenuItem(value: fruit, child: Text(fruit)));
+    }
+    return items;
+  }
+
+  void changedDropDownItem1(String selectedCompany) {
+    setState(() {
+      _selectedcompany = selectedCompany;
+    });
+  }
+
+  void changedDropDownItem2(String selectedProcessor) {
+    setState(() {
+      _selectedprocessor = selectedProcessor;
+    });
+  }
+
+  void changedDropDownItem3(String selectedRAM) {
+    setState(() {
+      _selectedram = selectedRAM;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Find my Phone"),
+        ),
+        body: Container(
+          child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  DropdownButton(
+                    hint: Text("Select Company"),
+                    value: _selectedcompany,
+                    items: _dropDownMenuItems1,
+                    onChanged: changedDropDownItem1,
+                  ),
+                  DropdownButton(
+                    hint: Text("Select Processor"),
+                    value: _selectedprocessor,
+                    items: _dropDownMenuItems2,
+                    onChanged: changedDropDownItem2,
+                  ),
+                  DropdownButton(
+                    hint: Text("Select RAM"),
+                    value: _selectedram,
+                    items: _dropDownMenuItems3,
+                    onChanged: changedDropDownItem3,
+                  ),
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}

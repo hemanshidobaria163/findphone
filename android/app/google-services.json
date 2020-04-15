@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "859364003087",
+    "firebase_url": "https://findphone-94d35.firebaseio.com",
+    "project_id": "findphone-94d35",
+    "storage_bucket": "findphone-94d35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859364003087:android:b07f927bc2862a36df827a",
+        "android_client_info": {
+          "package_name": "cpp.findphone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859364003087-k5bdjjq0q0hao88bosj4ii53qavpq2p3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOTKoSXy-RbG2zJOxic9jcqALCBmcqGoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859364003087-k5bdjjq0q0hao88bosj4ii53qavpq2p3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
