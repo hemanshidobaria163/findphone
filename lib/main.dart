@@ -65,7 +65,7 @@ class TestState extends State<MyApp> {
         fontFamily: 'Lato',
       ),
       home: Scaffold(
-        backgroundColor: Colors.indigo[100],
+        backgroundColor: Colors.white,
         //backgroundColor: Colors.white,
         appBar: AppBar(
           leading: Row(

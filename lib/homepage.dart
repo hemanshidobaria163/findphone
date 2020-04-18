@@ -25,6 +25,7 @@ class _homepageState extends State<homepage> {
   ];
   List _ram = ["3GB", "4GB", "6GB", "8GB", "12GB"];
   List _storage = ["32 GB", "64 GB", "128 GB", "256 GB"];
+  List _battery =["1821 mAh","2915 mAh "," 3,046 mAh ","3,110 mAh ","3,174 mAh","3800 mAh","4300 mAh","5000 mAh",];
   /*List _os = ["Andoid", "iOS", "Windows"];
   List _primarycamara = ["8MP", "12MP", "16MP", "21MP", "48MP", "64MP"];
 
@@ -55,6 +56,16 @@ class _homepageState extends State<homepage> {
     "3" : "128GB",
     "4" : "256GB",
   };
+  final Battery = {
+    "1" :"1821 mAh",
+    "2" :"2915 mAh",
+    "3" :"3,046 mAh",
+    "4" :"3,110 mAh",
+    "5" :"3,174 mAh",
+    "6" :"3800 mAh",
+    "7" :"4300 mAh",
+    "8" :"5000 mAh"
+  };
   /*final OS = {
     "1" : "Android",
     "2" : "iOS",
@@ -80,7 +91,8 @@ class _homepageState extends State<homepage> {
 
   List<DropdownMenuItem<String>> _dropDownMenuItems4;
   String _selectedstorage;
-
+  List<DropdownMenuItem<String>> _dropDownMenuItems5;
+  String _selectedbattery;
   /*List<DropdownMenuItem<String>> _dropDownMenuItems5;
   String _selectedos;
 
@@ -100,6 +112,8 @@ class _homepageState extends State<homepage> {
 
     _dropDownMenuItems4 = buildAndGetDropDownMenuItems(_storage);
     _selectedstorage = null; //_dropDownMenuItems3[0].value;
+    _dropDownMenuItems5 = buildAndGetDropDownMenuItems(_battery);
+    _selectedbattery = null;
 
    /* _dropDownMenuItems5 = buildAndGetDropDownMenuItems(_os);
     _selectedos = null; //_dropDownMenuItems3[0].value;
@@ -130,6 +144,10 @@ class _homepageState extends State<homepage> {
     else if(_value == "Storage"){
       _dropDownMenuItems4 = [];
       populatestorage();
+    }
+    else if(_value == "Battery"){
+      _dropDownMenuItems5 = [];
+      populatebattery();
     }
     /*else if(_value == "OS"){
       _dropDownMenuItems5 = [];
@@ -192,6 +210,19 @@ class _homepageState extends State<homepage> {
       ));
     }
   }
+
+  void populatebattery(){
+    for(String key in Battery.keys){
+      _dropDownMenuItems5.add(DropdownMenuItem<String>(
+        child : Center(
+          child: Text(
+              Processor[key]
+          ),
+        ),
+        value: Processor[key],
+      ));
+    }
+  }
   /*void populateos(){
     for(String key in OS.keys){
       _dropDownMenuItems5.add(DropdownMenuItem<String>(
@@ -249,6 +280,12 @@ class _homepageState extends State<homepage> {
     });
   }
 
+  void changedDropDownItem5(String selectedBattery) {
+    setState(() {
+      _selectedbattery = selectedBattery;
+      disabledropdown ? null : (_value) => secondselected(_value);
+    });
+  }
   /*void changedDropDownItem5(String selectedOS) {
     setState(() {
       _selectedos = selectedOS;
@@ -274,9 +311,7 @@ class _homepageState extends State<homepage> {
     //Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.indigo[100],
-      ),
+
        child: Center(
           child: Column(
                crossAxisAlignment: CrossAxisAlignment.center,
@@ -303,62 +338,119 @@ class _homepageState extends State<homepage> {
                     height: 30,
                     width: 300,
                   ),*/
-                  SizedBox(
-                    child:DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      hint: Text(
-                        "Select Processor",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontStyle: FontStyle.normal,
-                            color: Colors.black),
-                      ),
-                      value: _selectedprocessor,
-                      items: _dropDownMenuItems2,
-                      elevation: 16,
-                      onChanged: changedDropDownItem2,
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(15.0),
+                      border: Border.all(
+                          color: Colors.black, style: BorderStyle.solid, width: 0.80),
                     ),
-                  ),
-                    height:30,
-                    width: 300,
-                  ),
-                  SizedBox(
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                        hint: Text(
-                          "Select RAM", textAlign: TextAlign.center,
+                    child: SizedBox(
+                      child:DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          hint: Text(
+                                 "Select Processor",
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 18,
                               fontStyle: FontStyle.normal,
-                              color: Colors.black),
+                              color: Colors.black,
+                          ),
+                            textAlign: TextAlign.center,
                         ),
-                        value: _selectedram,
-                        items: _dropDownMenuItems3,
+                        value: _selectedprocessor,
+                        items: _dropDownMenuItems2,
                         elevation: 16,
-                        onChanged: changedDropDownItem3,
+                        onChanged: changedDropDownItem2,
                       ),
                     ),
-                    height: 30,
-                    width: 300,
+                      height:50,
+                      width: 350,
+                    ),
                   ),
-                  SizedBox(
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
-                        hint: Text(
-                          "Select Internal Storage",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontStyle: FontStyle.normal,
-                              color: Colors.black),
-                        ),
-                        value: _selectedstorage,
-                        items: _dropDownMenuItems4,
-                        elevation: 16,
-                        onChanged: changedDropDownItem4,
-                      ),
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(15.0),
+                      border: Border.all(
+                          color: Colors.black, style: BorderStyle.solid, width: 0.80),
                     ),
-                    height: 30,
-                    width: 300,
+                    child: SizedBox(
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          hint: Text(
+                            "Select RAM", textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontStyle: FontStyle.normal,
+                                color: Colors.black),
+                          ),
+                          value: _selectedram,
+                          items: _dropDownMenuItems3,
+                          elevation: 16,
+                          onChanged: changedDropDownItem3,
+                        ),
+                      ),
+                      height: 50,
+                      width: 350,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(
+                        color: Colors.black, style: BorderStyle.solid, width: 0.80),
+                  ),
+                    child: SizedBox(
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          hint: Text(
+                            "Select Internal Storage",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontStyle: FontStyle.normal,
+                                color: Colors.black),
+                          ),
+                          value: _selectedstorage,
+                          items: _dropDownMenuItems4,
+                          elevation: 16,
+                          onChanged: changedDropDownItem4,
+                        ),
+                      ),
+                      height: 50,
+                      width: 350,
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(15.0),
+                      border: Border.all(
+                          color: Colors.black, style: BorderStyle.solid, width: 0.80),
+                    ),
+                    child: SizedBox(
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          hint: Text(
+                            "Select Battery", textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontStyle: FontStyle.normal,
+                                color: Colors.black),
+                          ),
+                          value: _selectedbattery,
+                          items: _dropDownMenuItems5,
+                          elevation: 16,
+                          onChanged: changedDropDownItem5,
+                        ),
+                      ),
+                      height: 50,
+                      width: 350,
+                    ),
                   ),
                  /* DropdownButton(
                     hint: Text(
@@ -387,14 +479,10 @@ class _homepageState extends State<homepage> {
                   ),*/
                   SizedBox(
                     height: 50,
-                    width: 300,
+                    width: 350,
                     child: RaisedButton(
                       color: Colors.indigo[300],
-                      onPressed: () {
-                        setState(() {
-                          LoginPage();
-                        });
-                      },
+                      onPressed: browse,
                       child: Text(
                         "Browse",
                         style: TextStyle(fontSize: 20,color: Colors.black),
@@ -405,6 +493,13 @@ class _homepageState extends State<homepage> {
           ),
        ),
     );
-
+  }
+  Future<void> browse() async {
+    try {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SearchItem()));
+    } catch (e) {
+      print(e);
+    }
   }
 }
