@@ -9,9 +9,12 @@ class DetailPage extends StatefulWidget {
 
 class DetailPageState extends State<DetailPage> {
   final _imageIphoneXR = [
-    "assets/images/PhoneData/Iphone 1.png",
-    "assets/images/PhoneData/XR 1.jpg",
-    "assets/images/PhoneData/XR 2.jpeg"
+    "https://assets.teenvogue.com/photos/5b9967cdae6cd84bb0885c23/16:9/w_2560%2Cc_limit/iphones-no-tweet.jpg",
+    "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-xr-red-select-201809?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1551226038669",
+    "https://membershipwireless.com/media/catalog/product/a/p/apple-iphonexr-blue-2-3x_comp.jpg?width=700&height=700&canvas=700:700&quality=80&bg-color=255,255,255&fit=bounds",
+    "https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/apple-iphone-xr/black/Apple-iPhoneXr-Black-1-3x.jpg",
+    "https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/apple-iphone-xr/black/Apple-iPhoneXr-Black-2-3x.jpg",
+    "https://cdn.tmobile.com/content/dam/t-mobile/en-p/cell-phones/apple/apple-iphone-xr/black/Apple-iPhoneXr-Black-3-3x.jpg",
   ];
 
   @override
@@ -37,7 +40,7 @@ class DetailPageState extends State<DetailPage> {
                          // padding: EdgeInsets.all(10),
                           alignment: Alignment.topCenter,
                           child: Center(
-                            child: Image.asset(
+                            child: Image.network(
                               item,
                               fit: BoxFit.contain,
                               width: 1000,

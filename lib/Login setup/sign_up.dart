@@ -26,7 +26,7 @@ class _SignUpState extends State<SignUp>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/FP.png',
+                      'assets/images/icon.png',
                       fit: BoxFit.contain,
                       height: 32,
                     ),
